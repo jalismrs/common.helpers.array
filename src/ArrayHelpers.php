@@ -26,7 +26,6 @@ final class ArrayHelpers
         string $property,
         array $items
     ) : array {
-        // get values of property in items
         return array_map(
             static function(
                 array $item
