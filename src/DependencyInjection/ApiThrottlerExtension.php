@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Jalismrs\ApiThrottlerBundle\DependencyInjection;
+namespace Jalismrs\HelpersArrayBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
@@ -9,11 +9,11 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\Config\FileLocator;
 
 /**
- * Class ApiThrottlerExtension
+ * Class HelpersArrayExtension
  *
- * @package Jalismrs\ApiThrottlerBundle\DependencyInjection
+ * @package Jalismrs\HelpersArrayBundle\DependencyInjection
  */
-class ApiThrottlerExtension extends
+class HelpersArrayExtension extends
     Extension
 {
     /**
