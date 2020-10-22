@@ -4,11 +4,11 @@ declare(strict_types = 1);
 namespace Tests;
 
 /**
- * Class ApiThrottlerProvider
+ * Class HelpersArrayProvider
  *
  * @package Tests
  */
-final class ApiThrottlerProvider
+final class HelpersArrayProvider
 {
     public const USE_CASE_KEY = 'useCaseKey';
     public const IDENTIFIER   = 'identifier';

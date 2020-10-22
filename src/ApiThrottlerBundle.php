@@ -1,16 +1,16 @@
 <?php
 declare(strict_types = 1);
 
-namespace Jalismrs\ApiThrottlerBundle;
+namespace Jalismrs\HelpersArrayBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Class ApiThrottlerBundle
+ * Class HelpersArrayBundle
  *
- * @package Jalismrs\ApiThrottlerBundle
+ * @package Jalismrs\HelpersArrayBundle
  */
-class ApiThrottlerBundle extends
+class HelpersArrayBundle extends
     Bundle
 {
 
