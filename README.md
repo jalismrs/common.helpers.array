@@ -1,5 +1,7 @@
 # Symfony Bundle Helpers Array
 
+Adds several array helper methods
+
 ## Test
 
 `phpunit` OU `vendor/bin/phpunit`
@@ -8,12 +10,56 @@ coverage reports will be available in `var/coverage`
 
 ## Use
 
+### pluck
 ```php
-use Jalismrs\HelpersArrayBundle\ArrayHelpers;
+use Jalismrs\Helpers\Arrays\ArrayHelpers;
 
-class SomeClass {
-    public function someCall() {
-        $output = ArrayHelpers::pluck($input);
-    }
-}
+$input = [
+    [
+        'property' => 'value1',
+    ],
+    [
+        'property' => 'value2',
+    ],
+];
+$output = [
+    'value1',
+    'value2',
+];
+
+$output = ArrayHelpers::pluck(
+    $input,
+    'property',
+);
+```
+
+### split
+```php
+use Jalismrs\Helpers\Arrays\ArrayHelpers;
+
+$input = [
+    5,
+    7,
+    69,
+    420,
+];
+$output = [
+    ArrayHelpers::SPLIT_MATCHES     => [
+        5,
+        7
+    ],
+    ArrayHelpers::SPLIT_NOT_MATCHES => [
+        69,
+        420,
+    ],
+];
+
+$output = ArrayHelpers::split(
+    $input,
+    static function(
+        int $item
+    ): bool {
+        return $item < 10;
+    },
+);
 ```
