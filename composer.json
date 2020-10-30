@@ -19,10 +19,9 @@
   "config" : {
     "sort-packages" : true
   },
-  "description" : "Adds several array helper methods",
+  "description" : "Adds array helper methods",
   "license": "MIT",
-  "minimum-stability": "dev",
-  "name" : "jalismrs/arrays.helpers",
+  "name" : "jalismrs/common.helpers.array",
   "require-dev" : {
     "composer/package-versions-deprecated" : "*",
     "phpunit/phpunit" : "9.4.2",
@@ -33,10 +32,9 @@
   },
   "support" : {
     "email" : "dev@jalis.fr",
-    "issues" : "https://github.com/jalismrs/arrays.helpers/issues",
-    "wiki" : "https://github.com/jalismrs/arrays.helpers/wiki",
-    "source" : "https://github.com/jalismrs/arrays.helpers",
-    "docs" : "https://github.com/jalismrs/arrays.helpers"
-  },
-  "type" : "symfony-bundle"
+    "issues" : "https://github.com/jalismrs/common.helpers.array/issues",
+    "wiki" : "https://github.com/jalismrs/common.helpers.array/wiki",
+    "source" : "https://github.com/jalismrs/common.helpers.array",
+    "docs" : "https://github.com/jalismrs/common.helpers.array"
+  }
 }

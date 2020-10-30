@@ -60,25 +60,25 @@ final class ArrayHelpersProvider
             ],
             'missing return type'  => [
                 'input'  => static function(
-                    bool $item
+                    bool $value
                 ) {
-                    return $item;
+                    return $value;
                 },
                 'output' => 'splitter lacks a return type',
             ],
             'nullable return type' => [
                 'input'  => static function(
-                    bool $item
+                    bool $value
                 ) : ?bool {
-                    return $item;
+                    return $value;
                 },
                 'output' => 'splitter allows a nullable return type',
             ],
             'return type'          => [
                 'input'  => static function(
-                    bool $item
+                    bool $value
                 ) : int {
-                    return (int)$item;
+                    return (int)$value;
                 },
                 'output' => "splitter returns a 'int' whereas 'bool' is expected",
             ],

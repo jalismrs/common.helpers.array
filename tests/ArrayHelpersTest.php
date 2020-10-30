@@ -157,9 +157,9 @@ final class ArrayHelpersTest extends
             42,
         ];
         $splitter = static function(
-            int $item
+            int $value
         ) : bool {
-            return $item < 10;
+            return $value < 10;
         };
         
         // act
