@@ -31,7 +31,7 @@ final class ArrayHelpers
      *
      * @static
      *
-     * @param array $items
+     * @param array $input
      * @param       $property
      *
      * @return array
@@ -39,19 +39,22 @@ final class ArrayHelpers
      * @throws \InvalidArgumentException
      */
     public static function pluckOne(
-        array $items,
+        array $input,
         $property
     ) : array {
         $output = [];
         
-        $items = self::pluckMany(
-            $items,
+        $input = self::pluckMany(
+            $input,
             [
                 $property,
             ]
         );
-        foreach ($items as $index => $item) {
-            $output[$index] = $item[$property];
+        /**
+         * @var array $value
+         */
+        foreach ($input as $key => $value) {
+            $output[$key] = $value[$property];
         }
         
         return $output;
@@ -63,7 +66,7 @@ final class ArrayHelpers
      *
      * @static
      *
-     * @param array $items
+     * @param array $input
      * @param array $properties
      *
      * @return array
@@ -71,33 +74,33 @@ final class ArrayHelpers
      * @throws \InvalidArgumentException
      */
     public static function pluckMany(
-        array $items,
+        array $input,
         array $properties
     ) : array {
         $output = [];
         
-        foreach ($items as $index => $item) {
+        foreach ($input as $key => $value) {
             if (!is_array(
-                $item,
+                $value,
             )) {
                 throw new InvalidArgumentException(
-                    "Item#{$index} is not an array"
+                    "Item#{$key} is not an array"
                 );
             }
             
-            $output[$index] = [];
+            $output[$key] = [];
             
             foreach ($properties as $property) {
                 if (!array_key_exists(
                     $property,
-                    $item,
+                    $value,
                 )) {
                     throw new InvalidArgumentException(
-                        "Item#{$index} lacks property '{$property}'"
+                        "Item#{$key} lacks property '{$property}'"
                     );
                 }
                 
-                $output[$index][$property] = $item[$property];
+                $output[$key][$property] = $value[$property];
             }
         }
         
@@ -109,7 +112,7 @@ final class ArrayHelpers
      *
      * @static
      *
-     * @param array    $items
+     * @param array    $input
      * @param callable $splitter
      *
      * @return array[]
@@ -117,7 +120,7 @@ final class ArrayHelpers
      * @throws \InvalidArgumentException
      */
     public static function split(
-        array $items,
+        array $input,
         callable $splitter
     ) : array {
         try {
@@ -168,12 +171,12 @@ final class ArrayHelpers
             self::SPLIT_NOT_MATCHES => [],
         ];
         
-        foreach ($items as $item) {
-            $key = $splitter($item)
+        foreach ($input as $value) {
+            $key = $splitter($value)
                 ? self::SPLIT_MATCHES
                 : self::SPLIT_NOT_MATCHES;
             
-            $output[$key][] = $item;
+            $output[$key][] = $value;
         }
         
         return $output;

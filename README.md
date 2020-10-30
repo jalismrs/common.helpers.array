@@ -1,36 +1,76 @@
-# Symfony Bundle Helpers Array
+# copmmon.helpers.array
 
-Adds several array helper methods
+Adds array helper methods
 
 ## Test
 
-`phpunit` OU `vendor/bin/phpunit`
+`phpunit` or `vendor/bin/phpunit`
 
 coverage reports will be available in `var/coverage`
 
 ## Use
 
-### pluck
+### pluckOne
 ```php
 use Jalismrs\Common\Helpers\ArrayHelpers;
 
 $input = [
-    [
-        'property' => 'value1',
+    'key' => [
+        'property1' => 'property1value1',
+        'property2' => 'property2value1',
     ],
     [
-        'property' => 'value2',
+        'property1' => 'property1value2',
+        'property2' => 'property2value2',
     ],
-];
-$output = [
-    'value1',
-    'value2',
 ];
 
-$output = ArrayHelpers::pluck(
+$output = ArrayHelpers::pluckOne(
     $input,
-    'property',
+    'property1',
 );
+
+$output = [
+    'key' => 'property1value1',
+    'property1value2',
+];
+```
+
+### pluckMany
+```php
+use Jalismrs\Common\Helpers\ArrayHelpers;
+
+$input = [
+    'key' => [
+        'property1' => 'property1value1',
+        'property2' => 'property2value1',
+        'property3' => 'property3value1',
+    ],
+    [
+        'property1' => 'property1value2',
+        'property2' => 'property2value2',
+        'property3' => 'property3value2',
+    ],
+];
+
+$output = ArrayHelpers::pluckMany(
+    $input,
+    [
+        'property1',
+        'property3',
+    ],
+);
+
+$output = [
+    'key' => [
+        'property1' => 'property1value1',
+        'property3' => 'property3value1',
+    ],
+    [
+        'property1' => 'property1value2',
+        'property3' => 'property3value2',
+    ],
+];
 ```
 
 ### split
@@ -38,28 +78,25 @@ $output = ArrayHelpers::pluck(
 use Jalismrs\Common\Helpers\ArrayHelpers;
 
 $input = [
-    5,
-    7,
-    69,
-    420,
-];
-$output = [
-    ArrayHelpers::SPLIT_MATCHES     => [
-        5,
-        7
-    ],
-    ArrayHelpers::SPLIT_NOT_MATCHES => [
-        69,
-        420,
-    ],
+    42,
+    -69,
 ];
 
 $output = ArrayHelpers::split(
     $input,
     static function(
-        int $item
+        int $value
     ): bool {
-        return $item < 10;
+        return $value < 10;
     },
 );
+
+$output = [
+    ArrayHelpers::SPLIT_MATCHES     => [
+        -69
+    ],
+    ArrayHelpers::SPLIT_NOT_MATCHES => [
+        42,
+    ],
+];
 ```
