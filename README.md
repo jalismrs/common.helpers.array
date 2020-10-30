@@ -12,7 +12,7 @@ coverage reports will be available in `var/coverage`
 
 ### pluck
 ```php
-use Jalismrs\Helpers\Arrays\ArrayHelpers;
+use Jalismrs\Common\Helpers\ArrayHelpers;
 
 $input = [
     [
@@ -35,7 +35,7 @@ $output = ArrayHelpers::pluck(
 
 ### split
 ```php
-use Jalismrs\Helpers\Arrays\ArrayHelpers;
+use Jalismrs\Common\Helpers\ArrayHelpers;
 
 $input = [
     5,

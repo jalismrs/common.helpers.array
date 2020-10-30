@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Jalismrs\Helpers\Arrays;
+namespace Jalismrs\Common\Helpers;
 
 use Closure;
 use InvalidArgumentException;
@@ -19,7 +19,7 @@ use function is_string;
 /**
  * Class ArrayHelpers
  *
- * @package Jalismrs\Helpers\Arrays
+ * @package Jalismrs\Common\Helpers
  */
 final class ArrayHelpers
 {

@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace Tests;
 
 use InvalidArgumentException;
-use Jalismrs\Helpers\Arrays\ArrayHelpers;
+use Jalismrs\Common\Helpers\ArrayHelpers;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @package Tests
  *
- * @covers  \Jalismrs\Helpers\Arrays\ArrayHelpers
+ * @covers  \Jalismrs\Common\Helpers\ArrayHelpers
  */
 final class ArrayHelpersTest extends
     TestCase

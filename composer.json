@@ -8,7 +8,7 @@
   ],
   "autoload" : {
     "psr-4" : {
-      "Jalismrs\\Helpers\\Arrays\\" : "src"
+      "Jalismrs\\Common\\Helpers\\" : "src"
     }
   },
   "autoload-dev" : {
