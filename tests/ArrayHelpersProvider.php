@@ -3,6 +3,8 @@ declare(strict_types = 1);
 
 namespace Tests;
 
+use PHPUnit\Framework\Assert;
+
 /**
  * Class ArrayHelpersProvider
  *
@@ -10,79 +12,109 @@ namespace Tests;
  */
 final class ArrayHelpersProvider
 {
+    public const KEY1 = 'key';
+    public const KEY2 = 42;
+    public const PROPERTY1 = 'property';
+    public const PROPERTY2 = 69;
+    public const VALUE1 = 'value';
+    public const VALUE2 = true;
+    
     /**
-     * provideFormatContractName
+     * providePluckThrowsInvalidArgumentException
+     *
+     * @return array[]
+     */
+    public function providePluckThrowsInvalidArgumentException() : array
+    {
+        return [
+            '!array'           => [
+                'input'  => [
+                    42,
+                ],
+                'output' => 'Item#0 is not an array',
+            ],
+            'missing property' => [
+                'input'  => [
+                    [
+                        '!property' => 'value',
+                    ],
+                ],
+                'output' => "Item#0 lacks property 'property'",
+            ],
+        ];
+    }
+    
+    /**
+     * provideSplitThrowsInvalidArgumentException
+     *
+     * @return array[]
+     */
+    public function provideSplitThrowsInvalidArgumentException() : array
+    {
+        return [
+            'parameters'           => [
+                'input'  => static function() : bool {
+                    return true;
+                },
+                'output' => 'splitter has 0 parameters whereas only 1 parameter is expected',
+            ],
+            'missing return type'  => [
+                'input'  => static function(
+                    bool $item
+                ) {
+                    return $item;
+                },
+                'output' => 'splitter lacks a return type',
+            ],
+            'nullable return type' => [
+                'input'  => static function(
+                    bool $item
+                ) : ?bool {
+                    return $item;
+                },
+                'output' => 'splitter allows a nullable return type',
+            ],
+            'return type'          => [
+                'input'  => static function(
+                    bool $item
+                ) : int {
+                    return (int)$item;
+                },
+                'output' => "splitter returns a 'int' whereas 'bool' is expected",
+            ],
+        ];
+    }
+    
+    /**
+     * provideReflectionOf
      *
      * @return array
      */
-    public function providePluck() : array
+    public function provideReflectionOf() : array
     {
         return [
-            'no items'               => [
-                'input'  => [
-                    'property' => 'test',
-                    'items'    => [],
-                ],
-                'output' => [],
+            'closure'       => [
+                'input' => static function() : void {
+                },
             ],
-            'items missing property' => [
-                'input'  => [
-                    'property' => 'test',
-                    'items'    => [
-                        [
-                            'test1' => 'value1',
-                        ],
-                    ],
-                ],
-                'output' => [
-                    null,
+            'single string' => [
+                'input' => 'intval',
+            ],
+            'double string' => [
+                'input' => Assert::class . '::assertTrue',
+            ],
+            'array'         => [
+                'input' => [
+                    Assert::class,
+                    'assertTrue',
                 ],
             ],
-            '1 item with property'   => [
-                'input'  => [
-                    'property' => 'test1',
-                    'items'    => [
-                        [
-                            'test1' => 'value1',
-                        ],
-                        [
-                            'test2' => 'value2',
-                        ],
-                    ],
-                ],
-                'output' => [
-                    'value1',
-                    null,
-                ],
-            ],
-            'standard'               => [
-                'input'  => [
-                    'property' => 'test1',
-                    'items'    => [
-                        [
-                            'test1' => 'value1',
-                        ],
-                        [
-                            'test1' => 'value2',
-                        ],
-                        [
-                            'test1' => 'value3',
-                        ],
-                        [
-                            'test1' => 'value4',
-                        ],
-                        [
-                            'test1' => 'value5',
-                        ],
-                    ],
-                ],
-                'output' => [
-                    'value1',
-                    'value2',
-                    'value3',
-                    'value4',
-                    'value5',
-                ],
+            'invokable'     => [
+                'input' => new class() {
+                    public function __invoke() : void
+                    {
+                    }
+                },
             ],
         ];
     }
