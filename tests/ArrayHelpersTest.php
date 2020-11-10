@@ -6,6 +6,7 @@ namespace Tests;
 use InvalidArgumentException;
 use Jalismrs\Common\Helpers\ArrayHelpers;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 /**
  * Class ArrayHelpersTest
@@ -17,6 +18,36 @@ use PHPUnit\Framework\TestCase;
 final class ArrayHelpersTest extends
     TestCase
 {
+    public static function testArrayUnique() : void
+    {
+        // arrange
+        $value = new stdClass();
+        
+        $input = [
+            ArrayHelpersProvider::KEY1 => $value,
+            ArrayHelpersProvider::KEY2 => $value,
+        ];
+        
+        // act
+        $output = ArrayHelpers::arrayUnique(
+            $input,
+        );
+        
+        // assert
+        self::assertCount(
+            1,
+            $output,
+        );
+        self::assertArrayHasKey(
+            ArrayHelpersProvider::KEY1,
+            $output,
+        );
+        self::assertSame(
+            $value,
+            $output[ArrayHelpersProvider::KEY1],
+        );
+    }
+    
     /**
      * testPluckMany
      *
@@ -30,7 +61,7 @@ final class ArrayHelpersTest extends
     public function testPluckOne() : void
     {
         // arrange
-        $input    = [
+        $input = [
             ArrayHelpersProvider::KEY1 => [
                 ArrayHelpersProvider::PROPERTY1 => ArrayHelpersProvider::VALUE1,
             ],
@@ -70,7 +101,7 @@ final class ArrayHelpersTest extends
     public function testPluckMany() : void
     {
         // arrange
-        $input    = [
+        $input = [
             ArrayHelpersProvider::KEY2 => [
                 ArrayHelpersProvider::PROPERTY2 => ArrayHelpersProvider::VALUE2,
             ],
