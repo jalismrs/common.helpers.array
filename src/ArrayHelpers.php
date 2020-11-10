@@ -13,6 +13,7 @@ use ReflectionNamedType;
 use function array_key_exists;
 use function count;
 use function explode;
+use function in_array;
 use function is_array;
 use function is_string;
 
@@ -25,6 +26,39 @@ final class ArrayHelpers
 {
     public const SPLIT_MATCHES     = 'matches';
     public const SPLIT_NOT_MATCHES = '!matches';
+    
+    /**
+     * arrayUnique
+     *
+     * @static
+     *
+     * @param array $input
+     *
+     * @return array
+     */
+    public static function arrayUnique(
+        array $input
+    ) : array {
+        /**
+         * NOTE:
+         * array_unique on objects is not a strict comparison
+         * and can throw a "nesting level too deep - recursive dependency" error
+         * on linked objects
+         */
+        $output = [];
+        
+        foreach ($input as $index => $value) {
+            if (!in_array(
+                $value,
+                $output,
+                true
+            )) {
+                $output[$index] = $value;
+            }
+        }
+        
+        return $output;
+    }
     
     /**
      * pluckOne

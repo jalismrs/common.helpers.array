@@ -8,12 +8,12 @@
   ],
   "autoload" : {
     "psr-4" : {
-      "Jalismrs\\Common\\Helpers\\" : "src"
+      "Jalismrs\\Common\\Helpers\\" : "src/"
     }
   },
   "autoload-dev" : {
     "psr-4" : {
-      "Tests\\" : "tests"
+      "Tests\\" : "tests/"
     }
   },
   "config" : {
