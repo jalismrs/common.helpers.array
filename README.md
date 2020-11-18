@@ -1,4 +1,4 @@
-# copmmon.helpers.array
+# common.helpers.array
 
 Adds array helper methods
 
@@ -9,6 +9,31 @@ Adds array helper methods
 coverage reports will be available in `var/coverage`
 
 ## Use
+
+### arrayUnique
+```php
+use Jalismrs\Common\Helpers\ArrayHelpers;
+
+$value1 = new stdClass();
+
+$input = [
+    'key1' => $value1,
+    'value2',
+    $value1,
+    'key2' => 'value2',
+];
+
+$output = ArrayHelpers::arrayUnique(
+    $input,
+);
+
+/**
+ * [
+ *   'key1' => $value1,
+ *   'value2',
+ * ]
+ */
+```
 
 ### pluckOne
 ```php
@@ -30,10 +55,12 @@ $output = ArrayHelpers::pluckOne(
     'property1',
 );
 
-$output = [
-    'key' => 'property1value1',
-    'property1value2',
-];
+/**
+ * [
+ *   'key' => 'property1value1',
+ *   'property1value2',
+ * ]
+ */
 ```
 
 ### pluckMany
@@ -61,16 +88,18 @@ $output = ArrayHelpers::pluckMany(
     ],
 );
 
-$output = [
-    'key' => [
-        'property1' => 'property1value1',
-        'property3' => 'property3value1',
-    ],
-    [
-        'property1' => 'property1value2',
-        'property3' => 'property3value2',
-    ],
-];
+/**
+ * [
+ *   'key' => [
+ *     'property1' => 'property1value1',
+ *     'property3' => 'property3value1',
+ *   ],
+ *   [
+ *     'property1' => 'property1value2',
+ *     'property3' => 'property3value2',
+ *   ],
+ * ]
+ */
 ```
 
 ### split
@@ -91,12 +120,14 @@ $output = ArrayHelpers::split(
     },
 );
 
-$output = [
-    ArrayHelpers::SPLIT_MATCHES     => [
-        -69
-    ],
-    ArrayHelpers::SPLIT_NOT_MATCHES => [
-        42,
-    ],
-];
+/**
+ * [
+ *   ArrayHelpers::SPLIT_MATCHES     => [
+ *     -69
+ *   ],
+ *   ArrayHelpers::SPLIT_NOT_MATCHES => [
+ *     42,
+ *   ],
+ * ]
+ */
 ```
